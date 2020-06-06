@@ -68,11 +68,14 @@ export class TodoAccess {
           "userId": userId,
           "todoId": todoId
         },
-        UpdateExpression: "set name= :name, dueDate= :dueDate, done= :done",
+        UpdateExpression: "set #todoName= :name, dueDate= :dueDate, done= :done",
         ExpressionAttributeValues:{
           ":name": updatedTodo.name,
           ":dueDate": updatedTodo.dueDate,
           ":done": updatedTodo.done
+        },
+        ExpressionAttributeNames:{
+          "#todoName": "name"
         }
     }).promise()
   }
